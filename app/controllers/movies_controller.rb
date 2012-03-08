@@ -8,6 +8,20 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @title_style = ""
+    @date_style = ""
+  end
+  
+  def sort_title
+    @movies = Movie.find(:all, :order => "title" )
+    @title_style = "hilite"
+    render :action => "index"
+  end
+
+  def sort_date
+    @movies = Movie.find(:all, :order => "release_date" )  
+    @date_style = "hilite"
+    render :action => "index"
   end
 
   def new
